@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import com.example.bookstore.R
+import com.example.bookstore.core.Constants
 import com.example.bookstore.databinding.ActivityMainBinding
 import com.example.bookstore.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startCountDown() {
-        object : CountDownTimer(3000, 1000) {
+        object : CountDownTimer(Constants.TOTAL_TIME_SPLASH, Constants.COUNT_DOWN_TIME_SPLASH) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {

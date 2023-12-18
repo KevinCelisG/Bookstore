@@ -4,7 +4,6 @@ import com.example.bookstore.data.network.BookstoreService
 import javax.inject.Inject
 
 class BookstoreRepository @Inject constructor(private val bookstoreService: BookstoreService) {
-    suspend fun login(email: String, password: String) {
+    suspend fun login(email: String, password: String): Boolean =
         bookstoreService.login(email, password)
-    }
 }

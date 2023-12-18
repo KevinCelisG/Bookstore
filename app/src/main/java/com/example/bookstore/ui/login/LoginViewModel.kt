@@ -7,5 +7,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
-    suspend fun login(email: String, password: String) = loginUseCase.invoke(email, password)
+    suspend fun login(email: String, password: String): Boolean =
+        loginUseCase.invoke(email, password)
 }

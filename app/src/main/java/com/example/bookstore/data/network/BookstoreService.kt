@@ -26,13 +26,13 @@ class BookstoreService @Inject constructor(
                     val oauthKey = apiClient.createOauthKey("createOauthkey", email, password, appKey.body()!!.appkey).execute()
                     if (oauthKey.isSuccessful) {
                         val sessionKey = apiClient.createSessionKey("createSesskey", oauthKey.body()!!.o_u, oauthKey.body()!!.oauthkey).execute()
-                        sessionKey.isSuccessful
+                        return@withContext sessionKey.isSuccessful
                     }
                 }
             } catch (e: Exception) {
                 Log.e(Constants.TAG, e.toString())
             }
-            false
+            return@withContext false
         }
     }
 }

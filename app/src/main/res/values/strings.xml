@@ -4,4 +4,6 @@
     <string name="hint_email">Enter your email</string>
     <string name="hint_password">Enter your password</string>
     <string name="button_login">Login</string>
+    <string name="authentication_error">Authentication error. Please verify your credentials and try again</string>
+    <string name="fields_error">You have to fill in all fields</string>
 </resources>

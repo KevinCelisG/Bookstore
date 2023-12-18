@@ -1,11 +1,17 @@
 package com.example.bookstore.ui.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.bookstore.R
+import com.example.bookstore.core.Constants
+import com.example.bookstore.core.Util
 import com.example.bookstore.databinding.ActivityLoginBinding
+import com.example.bookstore.ui.landing.LandingActivity
+import com.example.bookstore.ui.splash.SplashActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,9 +31,28 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private suspend fun login() {
-        val email = binding.editTextEmail.text.toString()
-        val password = binding.editTextPassword.text.toString()
+        if (checkFields()) {
+            val email = binding.editTextEmail.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            val emailTest = "android.developer@timetonic.com"
+            val passwordTest = "Android.developer1"
 
-        loginViewModel.login(email, password)
+            val isSuccessful = loginViewModel.login(emailTest, passwordTest)
+
+            if (isSuccessful) {
+                val intent = Intent(this@LoginActivity, LandingActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Util.showAShortMessage(this, R.string.authentication_error)
+            }
+
+            Log.d(Constants.TAG, "Is successful: $isSuccessful")
+        } else {
+            Util.showAShortMessage(this, R.string.fields_error)
+        }
     }
+
+    private fun checkFields(): Boolean =
+        binding.editTextEmail.text.isNotEmpty() and binding.editTextPassword.text.isNotEmpty()
 }

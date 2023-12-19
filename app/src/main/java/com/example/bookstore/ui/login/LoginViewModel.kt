@@ -9,4 +9,6 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
     suspend fun login(email: String, password: String): Boolean =
         loginUseCase.invoke(email, password)
+
+    fun isKeyListSaved(): Boolean = loginUseCase.isKeyListSaved()
 }

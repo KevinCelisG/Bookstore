@@ -14,10 +14,8 @@ class BookstoreService @Inject constructor(
 ) {
 
     private val apiClient = bookstoreClient.getApiClient()
-    private lateinit var sesskey: String
-    private lateinit var o_u: String
 
-    suspend fun login(email: String, password: String): Boolean {
+    suspend fun login(email: String, password: String): List<String> {
         return withContext(Dispatchers.IO) {
             try {
                 val appKey = apiClient.createAppKey(
@@ -38,23 +36,25 @@ class BookstoreService @Inject constructor(
                             oauthKey.body()!!.oauthkey
                         ).execute()
 
-                        o_u = oauthKey.body()!!.o_u
-                        sesskey = sessionKey.body()!!.sesskey
+                        val keyList = mutableListOf<String>()
+                        keyList.add(oauthKey.body()!!.o_u)
+                        keyList.add(sessionKey.body()!!.sesskey)
 
-                        return@withContext sessionKey.isSuccessful
+                        return@withContext keyList
                     }
                 }
             } catch (e: Exception) {
                 Log.e(Constants.TAG, e.toString())
             }
-            return@withContext false
+            return@withContext emptyList()
         }
     }
 
-    suspend fun getAllBooks(): List<Book> {
+    suspend fun getAllBooks(o_u: String, sesskey: String): List<Book> {
         return withContext(Dispatchers.IO) {
             val booksList = mutableListOf<Book>()
-            val books = apiClient.getAllBooks(Constants.REQUEST_GET_ALL_BOOKS, o_u, o_u, sesskey).execute()
+            val books =
+                apiClient.getAllBooks(Constants.REQUEST_GET_ALL_BOOKS, o_u, o_u, sesskey).execute()
 
             for (book in books.body()!!.allBooks.books) {
                 booksList.add(

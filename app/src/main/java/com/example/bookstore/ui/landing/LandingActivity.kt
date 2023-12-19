@@ -43,6 +43,10 @@ class LandingActivity : AppCompatActivity() {
 
             binding.progressBar.visibility = View.INVISIBLE
         }
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        landingViewModel.removeKeyList()
     }
 }

@@ -28,22 +28,29 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        isKeyListSaved()
         binding.buttonLogin.setOnClickListener { lifecycleScope.launch { login() } }
+    }
+
+    private fun isKeyListSaved() {
+        if (loginViewModel.isKeyListSaved()) {
+            val intent = Intent(this@LoginActivity, LandingActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private suspend fun login() {
         if (checkFields()) {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-            val emailTest = "android.developer@timetonic.com"
-            val passwordTest = "Android.developer1"
 
             binding.progressBar.visibility = View.VISIBLE
 
-            if (loginViewModel.login(emailTest, passwordTest)) {
+            if (loginViewModel.login(email, password)) {
+                Util.showAShortMessage(this, R.string.authentication_successful)
                 val intent = Intent(this@LoginActivity, LandingActivity::class.java)
                 startActivity(intent)
-                finish()
+                clearFields()
             } else {
                 Util.showAShortMessage(this, R.string.authentication_error)
             }
@@ -52,6 +59,11 @@ class LoginActivity : AppCompatActivity() {
         } else {
             Util.showAShortMessage(this, R.string.fields_error)
         }
+    }
+
+    private fun clearFields() {
+        binding.editTextEmail.text.clear()
+        binding.editTextPassword.text.clear()
     }
 
     private fun checkFields(): Boolean =

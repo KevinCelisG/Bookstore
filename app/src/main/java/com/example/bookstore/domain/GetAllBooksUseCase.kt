@@ -6,4 +6,6 @@ import javax.inject.Inject
 
 class GetAllBooksUseCase @Inject constructor(private val bookstoreRepository: BookstoreRepository) {
     suspend fun invoke(): List<Book> = bookstoreRepository.getAllBooks()
+
+    fun removeKeyList() = bookstoreRepository.removeKeyList()
 }

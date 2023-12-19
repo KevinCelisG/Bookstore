@@ -10,4 +10,6 @@ import javax.inject.Inject
 class LandingViewModel @Inject constructor(private val getAllBooksUseCase: GetAllBooksUseCase) :
     ViewModel() {
     suspend fun getAllBooks(): List<Book> = getAllBooksUseCase.invoke()
+
+    fun removeKeyList() = getAllBooksUseCase.removeKeyList()
 }

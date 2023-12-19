@@ -7,4 +7,5 @@
     <string name="authentication_error">Authentication error. Please verify your credentials and try again</string>
     <string name="fields_error">You have to fill in all fields</string>
     <string name="no_books_available">No books available</string>
+    <string name="authentication_successful">Authentication successful</string>
 </resources>

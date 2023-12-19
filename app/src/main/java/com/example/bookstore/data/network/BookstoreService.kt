@@ -21,11 +21,11 @@ class BookstoreService @Inject constructor(
     suspend fun login(email: String, password: String): Boolean {
         return withContext(Dispatchers.IO) {
             try {
-                val appKey = apiClient.createAppKey("createAppkey", "Bookstore").execute()
+                val appKey = apiClient.createAppKey(Constants.REQUEST_CREATE_APP_KEY, Constants.APP_NAME_PARAMETER).execute()
                 if (appKey.isSuccessful) {
-                    val oauthKey = apiClient.createOauthKey("createOauthkey", email, password, appKey.body()!!.appkey).execute()
+                    val oauthKey = apiClient.createOauthKey(Constants.REQUEST_CREATE_OAUTH_KEY, email, password, appKey.body()!!.appkey).execute()
                     if (oauthKey.isSuccessful) {
-                        val sessionKey = apiClient.createSessionKey("createSesskey", oauthKey.body()!!.o_u, oauthKey.body()!!.oauthkey).execute()
+                        val sessionKey = apiClient.createSessionKey(Constants.REQUEST_CREATE_SESSION_KEY, oauthKey.body()!!.o_u, oauthKey.body()!!.oauthkey).execute()
                         return@withContext sessionKey.isSuccessful
                     }
                 }

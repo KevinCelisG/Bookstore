@@ -37,17 +37,13 @@ class LoginActivity : AppCompatActivity() {
             val emailTest = "android.developer@timetonic.com"
             val passwordTest = "Android.developer1"
 
-            val isSuccessful = loginViewModel.login(emailTest, passwordTest)
-
-            if (isSuccessful) {
+            if (loginViewModel.login(emailTest, passwordTest)) {
                 val intent = Intent(this@LoginActivity, LandingActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
                 Util.showAShortMessage(this, R.string.authentication_error)
             }
-
-            Log.d(Constants.TAG, "Is successful: $isSuccessful")
         } else {
             Util.showAShortMessage(this, R.string.fields_error)
         }

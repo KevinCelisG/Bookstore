@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.bookstore.R
@@ -37,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
             val emailTest = "android.developer@timetonic.com"
             val passwordTest = "Android.developer1"
 
+            binding.progressBar.visibility = View.VISIBLE
+
             if (loginViewModel.login(emailTest, passwordTest)) {
                 val intent = Intent(this@LoginActivity, LandingActivity::class.java)
                 startActivity(intent)
@@ -44,6 +47,8 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Util.showAShortMessage(this, R.string.authentication_error)
             }
+
+            binding.progressBar.visibility = View.INVISIBLE
         } else {
             Util.showAShortMessage(this, R.string.fields_error)
         }

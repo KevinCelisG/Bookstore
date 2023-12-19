@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Bookstore" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/blue_dark</item>
+        <item name="colorPrimary">@color/dark_blue</item>
     </style>
 
     <style name="Theme.Bookstore" parent="Base.Theme.Bookstore" />

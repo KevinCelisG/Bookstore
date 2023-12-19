@@ -12,6 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 class SplashActivity : AppCompatActivity() {
 
+    // View binding for the activity layout.
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,10 @@ class SplashActivity : AppCompatActivity() {
         startCountDown()
     }
 
+    /**
+     * Initiates a countdown timer to control the duration of the splash screen.
+     * Upon completion, navigates to the login screen and finishes the activity.
+     */
     private fun startCountDown() {
         object : CountDownTimer(Constants.TOTAL_TIME_SPLASH, Constants.COUNT_DOWN_TIME_SPLASH) {
             override fun onTick(millisUntilFinished: Long) {}
@@ -32,7 +37,6 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-
         }.start()
     }
 }

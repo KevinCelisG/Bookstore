@@ -13,8 +13,15 @@ class BookstoreService @Inject constructor(
     bookstoreClient: BookstoreClient
 ) {
 
+    // API client instance for making requests to the Bookstore API.
     private val apiClient = bookstoreClient.getApiClient()
 
+    /**
+     * Performs user authentication and get session keys.
+     * @param email Email.
+     * @param password Password.
+     * @return A list containing "o_u" and "sesskey" if authentication is successful, otherwise an empty list.
+     */
     suspend fun login(email: String, password: String): List<String> {
         return withContext(Dispatchers.IO) {
             try {
@@ -50,6 +57,12 @@ class BookstoreService @Inject constructor(
         }
     }
 
+    /**
+     * Gets a list of books based on user and session information.
+     * @param o_u User identifier.
+     * @param sesskey Session key for authentication.
+     * @return A list of Book objects.
+     */
     suspend fun getAllBooks(o_u: String, sesskey: String): List<Book> {
         return withContext(Dispatchers.IO) {
             val booksList = mutableListOf<Book>()

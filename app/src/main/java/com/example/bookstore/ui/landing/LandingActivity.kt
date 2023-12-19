@@ -14,7 +14,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LandingActivity : AppCompatActivity() {
 
+    // View binding for the activity layout.
     private lateinit var binding: ActivityLandingBinding
+
+    // ViewModel for managing data.
     private val landingViewModel: LandingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,6 +29,9 @@ class LandingActivity : AppCompatActivity() {
         listData()
     }
 
+    /**
+     * Asynchronously gets and displays the list of books.
+     */
     private fun listData() {
         lifecycleScope.launch {
             binding.progressBar.visibility = View.VISIBLE
@@ -45,6 +51,9 @@ class LandingActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Overrides the back button behavior to remove stored session keys before finishing the activity.
+     */
     override fun onBackPressed() {
         super.onBackPressed()
         landingViewModel.removeKeyList()

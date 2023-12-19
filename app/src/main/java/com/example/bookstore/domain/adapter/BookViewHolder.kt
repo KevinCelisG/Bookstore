@@ -9,8 +9,13 @@ import com.example.bookstore.domain.model.Book
 
 class BookViewHolder(view: View) : ViewHolder(view) {
 
+    // Binding object for accessing views within the item layout.
     private val binding = BookItemBinding.bind(view)
 
+    /**
+     * Renders book information by updating the views in the item layout.
+     * @param book The Book object containing information to be displayed.
+     */
     fun render(book: Book) {
         binding.textViewTitle.text = book.title
         Glide.with(binding.imageViewImage.context).load(book.image).into(binding.imageViewImage)

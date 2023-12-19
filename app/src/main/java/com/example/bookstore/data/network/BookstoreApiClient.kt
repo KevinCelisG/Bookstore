@@ -15,6 +15,9 @@ import retrofit2.http.POST
 
 interface BookstoreApiClient {
 
+    /**
+     * Creates an application key for the specified app name.
+     */
     @FormUrlEncoded
     @POST(Constants.END_POINT)
     fun createAppKey(
@@ -22,6 +25,9 @@ interface BookstoreApiClient {
         @Field("appname") appName: String
     ): Call<AppKey>
 
+    /**
+     * Creates an OAuth key for user authentication.
+     */
     @FormUrlEncoded
     @POST(Constants.END_POINT)
     fun createOauthKey(
@@ -31,6 +37,9 @@ interface BookstoreApiClient {
         @Field("appkey") appKey: String
     ): Call<OauthKey>
 
+    /**
+     * Creates a session key for user session management.
+     */
     @FormUrlEncoded
     @POST(Constants.END_POINT)
     fun createSessionKey(
@@ -39,6 +48,9 @@ interface BookstoreApiClient {
         @Field("oauthkey") oauthKey: String
     ): Call<SessionKey>
 
+    /**
+     * Gets a list of books based on user and session information.
+     */
     @FormUrlEncoded
     @POST(Constants.END_POINT)
     fun getAllBooks(
@@ -47,5 +59,4 @@ interface BookstoreApiClient {
         @Field("u_c") u_c: String,
         @Field("sesskey") sessionKey: String
     ): Call<AllBooks>
-
 }

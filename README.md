@@ -36,3 +36,7 @@ Bookstore allows you to browse a specific user's book collection through a login
 1. Clone the repository.
 2. Open the project in Android Studio.
 3. Compile and run the application on an emulator or Android device.
+
+## Download instructions
+1. Download the apk Bookstore.apk
+2. Install the apk.

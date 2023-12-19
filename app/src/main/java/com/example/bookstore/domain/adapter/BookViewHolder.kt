@@ -1,6 +1,5 @@
 package com.example.bookstore.domain.adapter
 
-import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide

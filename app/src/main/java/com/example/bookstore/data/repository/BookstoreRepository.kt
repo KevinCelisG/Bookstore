@@ -1,7 +1,5 @@
 package com.example.bookstore.data.repository
 
-import android.util.Log
-import com.example.bookstore.core.Constants
 import com.example.bookstore.data.local.SharedPreferencesService
 import com.example.bookstore.data.network.BookstoreService
 import com.example.bookstore.domain.model.Book

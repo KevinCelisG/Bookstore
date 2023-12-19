@@ -3,16 +3,13 @@ package com.example.bookstore.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.bookstore.R
-import com.example.bookstore.core.Constants
 import com.example.bookstore.core.Util
 import com.example.bookstore.databinding.ActivityLoginBinding
 import com.example.bookstore.ui.landing.LandingActivity
-import com.example.bookstore.ui.splash.SplashActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -4,11 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import com.example.bookstore.R
 import com.example.bookstore.core.Constants
 import com.example.bookstore.databinding.ActivityMainBinding
 import com.example.bookstore.ui.login.LoginActivity
-import dagger.hilt.android.AndroidEntryPoint
 
 class SplashActivity : AppCompatActivity() {
 
